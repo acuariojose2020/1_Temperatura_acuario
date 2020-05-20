@@ -685,9 +685,9 @@ void loop() {
 //////////////////////////////////////////////////// Cayenne
 
  // PAGE 6 - CAYENNE
-// char username[] = "074fdc60-977a-11ea-93bf-d33a96695544";
-//char password[] = "467869b0865fbac3b961d4a02907a972b15f92d6";
-//char clientID[] = "1e603fd0-977a-11ea-b767-3f1a8f1211ba";
+// char username[] = "xx";
+//char password[] = "xx";
+//char clientID[] = "xx";
    //----------------
     // See if Save Button was pressed
     //----------------------------------------------------------------------

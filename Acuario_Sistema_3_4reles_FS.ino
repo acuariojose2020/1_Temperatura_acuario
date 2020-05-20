@@ -51,9 +51,9 @@ int ERROR_CAYENNE=0;
 
 
 // Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
-char username[] = "f09f34e0-99d9-11ea-a67f-15e30d90bbf4";
-char password[] = "e0f11729e7f41a83941342db89d92e5fb08247a2";
-char clientID[] = "fc2d1f70-99d9-11ea-93bf-d33a96695544";
+char username[] = "xx";
+char password[] = "xx";
+char clientID[] = "xx";
 
 int Num_reles=4;
 int j;

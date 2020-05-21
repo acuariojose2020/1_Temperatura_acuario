@@ -1564,90 +1564,12 @@ void ScanButton() {
 ////////////////////////////////Cayenne //////////////////////////
 CAYENNE_OUT_DEFAULT()
 {
-  // Write data to Cayenne here. This example just sends the current uptime in milliseconds on virtual channel 0.
-  Cayenne.virtualWrite(0, millis());
-  Serial.println("escribiendo en out");
-  float valor=sun.dAzimuth-180;
-   Cayenne.virtualWrite(1, hour());
-   Cayenne.virtualWrite(2, minute());
-   Cayenne.virtualWrite(3, second());
-   
-  Cayenne.virtualWrite(4, valor);
-  Cayenne.virtualWrite(5, sun.dZenithAngle,TYPE_VOLTAGE,UNIT_VOLTS  );
- /* Cayenne.virtualWrite(6, angulo);
-  Cayenne.virtualWrite(7, FC_cerrada);
-  Cayenne.virtualWrite(8, FC_abierta);
-  Cayenne.virtualWrite(9, storage[0].control_manualD5);
-  Cayenne.virtualWrite(10, storage[0].t_apertura);
-  Cayenne.virtualWrite(11, storage[0].t_cierre);
-  Cayenne.virtualWrite(12, puerta_cerrada);
-  Cayenne.virtualWrite(13, puerta_abierta);
-  Cayenne.virtualWrite(12, storage[0].control_manualD5);
-  Cayenne.virtualWrite(13, storage[0].control_sol);
-  //Cayenne.virtualWrite(14, WiFi.localIP());
-  Cayenne.virtualWrite(15, storage2.Latitud);
-  Cayenne.virtualWrite(16, storage[0].Longitud);
-  int valor1= WiFi.localIP()[0];
-  Cayenne.virtualWrite(17, valor1);
-  valor1= WiFi.localIP()[1];
-  Cayenne.virtualWrite(18, valor1);
-  valor1= WiFi.localIP()[2];
-  Cayenne.virtualWrite(19, valor1);
-  valor1= WiFi.localIP()[3];
-  Cayenne.virtualWrite(20, valor1);
-  //WiFi.localIP()
-*/
-///////////////////////
-/*
-  Cayenne.virtualWrite(21, puerta_abierta);
-  Cayenne.virtualWrite(21, puerta_cerrada);
-  float valor3=storage[0].angulo_puesta_sol[0];
-  Cayenne.virtualWrite(23, valor3);
-  Cayenne.virtualWrite(24, storage[0].control_manualD5);
-  
-  Cayenne.digitalSensorWrite(30, FC_abierta);
-  Cayenne.digitalSensorWrite(31, FC_cerrada);
-   
-  // Some examples of other functions you can use to send data.
-  //Cayenne.celsiusWrite(1, 22.0);
-  //Cayenne.luxWrite(2, 700);
-  //Cayenne.virtualWrite(3, 50, TYPE_PROXIMITY, UNIT_CENTIMETER);
-  */
+ 
 }
 
 CAYENNE_IN_DEFAULT()
 {
-  CAYENNE_LOG("CAYENNE_IN_DEFAULT(%u) - %s, %s", request.channel, getValue.getId(), getValue.asString());
-/*
-  Serial.print("request.channel recibido: ");
-  Serial.println(request.channel);
-  if(request.channel==21){
-    //abrir puerta
-    Serial.println("abriendo puerta remoto");
-    control_D5();
-    Cayenne.virtualWrite(21, puerta_abierta);
-  }
-    if(request.channel==22){
-    //cerrar puerta
-    Serial.println("cerrando puerta remoto");
-    control_uv();
-    Cayenne.virtualWrite(22, puerta_cerrada);
-  }
-  if(request.channel==23){
-    //cerrar puerta
-    Serial.print("ángulo de apertura/cierre: ");
-    Serial.println(getValue.asString());
-    String valor=getValue.asString();
-    storage[0].angulo_puesta_sol[0]= valor.toFloat();
-    Cayenne.virtualWrite(23, storage[0].angulo_puesta_sol[0]);
-  }
-    if(request.channel==24){
-    //cerrar puerta
-    Serial.print("Control manual: ");
-    storage[0].control_manualD5=!storage[0].control_manualD5;
-    Cayenne.virtualWrite(24, storage[0].control_manualD5);
-  }
- */
+
 }
 
 ///////////////FIN Cayenne //////////save configuration ////////////////////

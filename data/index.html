@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Acuario-Sistema3</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <!-- <script src="https://code.jquery.com/ui/jquery-ui-git.js"></script> -->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.css" >
+
+
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+        <!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"> -->
+        <!-- <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script> -->
+
+      <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script> -->
+
+      <link rel="stylesheet" href="css/acuario.css">
+
+      <script src="js/temporizadores.js"></script>
+
+      <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+      <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+
+
+
+    </head>
+
+    <body>
+
+          <!-- Div that shows messages back to user -->
+      <div id="messageBox" style="display: none; bottom: 10px; width: 100%; position: fixed; z-index: 990; text-align: center; padding: 20px; color: #ffffff; border: 0px solid black">
+      <span id="messageBox_inner" style="padding: 16px; border: 1px solid black"></span>
+      </div>
+
+    <div class="container-fluid">
+      <h1><span id="titulo">Acuario - Sistema 1</span></h1>
+      <nav class="nav nav-tabs" id="tab">
+        <a href="#tab_mesures" class="nav-item nav-link active" data-toggle="tab">Medidas</a>
+        <a href="#tab_graphs" class="nav-item nav-link" data-toggle="tab">Timers</a>
+        <a href="#tab_gpio" class="nav-item nav-link" data-toggle="tab">Rel&eacute;s  </a>
+        <a href="#tab_configuration" class="nav-item nav-link" data-toggle="tab">Configuraci&oacute;n</a>
+        <a href="#tab_temp" class="nav-item nav-link" data-toggle="tab">Temperaturas</a>
+      </nav>
+      <div class="tab-content">
+        <div id="tab_mesures" class="tab-pane fade show active" >
+          <h2><span id="titulo">Acuario - Sistema 1</span></h2>
+          <ul class="nav nav-pills">
+            <li class="active"><a href="#">
+                <div class="badge badge-secondary badge-pill pull-right" id="temperature">-</div> Temperatura</a></li>
+            <li><a href="#">
+                <div class="badge badge-secondary badge-pill pull-right" id="mV_TDS">-</div> mV_TDS</a></li>
+            <li><a href="#">
+                <div class="badge badge-secondary badge-pill pull-right" id="tdsValue">-</div> tdsValue</a></li>
+          </ul><br>
+          <table id="table_mesures" data-toggle="table" data-show-colunns="true">
+            <thead>
+              <tr>
+                <th data-field="medida" data-align="left" data-sortable="true" data-formatter="labelFormatter">Medida</th>
+                <th data-field="valor" data-align="left" data-sortable="true" data-formatter="valueFormatter">Valor</th>
+                <th data-field="precedente" data-align="left" data-sortable="true" data-formatter="vpFormatter">Valor anterior</th>
+              </tr>
+            </thead>
+          </table>
+
+
+
+        </div>
+
+        <div class="tab-pane fade" id="tab_graphs">
+          <h2>Configure Timers</h2><span>Reles D5 - D6- D7 -D8</span><span style="color:blue"> Escriba la constraseña o "test" y click "GO" button</span>
+          <h4 class="text-center">
+            Password : <input type="text" class="input-lg" id="piIp"> <button type="button" id="btn_go" class="btn btn-lg btn-success">Go</button>
+          </h4>
+
+          <div class="m-b">
+            Seleccione el Rele a configurar
+            <div class="btn-group">
+              <button type="button" class=" active btn btn-info" id="D5b">D5</button>
+              <button type="button" class="btn btn-info" id="D6b" >D6</button>
+              <button type="button" class="btn btn-info" id="D7b">D7</button>
+              <button type="button" class="btn btn-info" id="D8b">D8</button>
+            </div>
+          </div>
+          <button id="but_defecto" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#basicModal">Default</button>
+          <button id="but_alloff" type="button" class="btn btn-primary btn-sm">All off</button>
+
+          <div id="contentA" style="width: 80%; margin: auto;">
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="tab_gpio">
+          <h2>GPIO</h2>
+          <div class="row">
+            <div class="col-xs-6 col-md-4">
+              <h4 class="text-left">D5
+                <span class="badge badge-secondary badge-pill" id="D5_etat">OFF</span>
+              </h4>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-success btn-lg" id="D5_On" type="button">ON</div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-danger btn-lg" id="D5_Off" type="button">OFF</div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <h4 class="text-left">D6
+                <div class="badge badge-secondary badge-pill" id="D6_etat">OFF</div>
+              </h4>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-success btn-lg" id="D6_On" type="button">ON</div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-danger btn-lg" id="D6_Off" type="button">OFF</div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <h4 class="text-left">D7
+                <div class="badge badge-secondary badge-pill" id="D7_etat">OFF</div>
+              </h4>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-success btn-lg" id="D7_On" type="button">ON</div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-danger btn-lg" id="D7_Off" type="button">OFF</div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <h4 class="text-left">D8
+                <div class="badge badge-secondary badge-pill" id="D8_etat">OFF</div>
+              </h4>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-success btn-lg" id="D8_On" type="button">ON</div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-danger btn-lg" id="D8_Off" type="button">OFF</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="tab-pane fade" id="tab_temp">
+          <h2>control Temperatura</h2>
+          <div class="row">
+            <div class="col-xs-6 col-md-4">
+              <h4 class="text-left">D0 Calentador
+                <span class="badge badge-secondary badge-pill" id="D0_etat">OFF</span>
+              </h4>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-success btn-lg" id="D0_On" type="button">ON</div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-danger btn-lg" id="D0_Off" type="button">OFF</div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <h4 class="text-left">D4 Ventilador
+                <div class="badge badge-secondary badge-pill" id="D4_etat">OFF</div>
+              </h4>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-success btn-lg" id="D4_On" type="button">ON</div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <div class="button btn btn-danger btn-lg" id="D4_Off" type="button">OFF</div>
+            </div>
+            <div class="row" style="  width:100%">
+              <p> <span id="separador33"></span></p>
+            </div>
+              <div class="col-xs-8 col-md-8">
+                <h6> Ajuste Temperatura M&aacute;nimo y M&iacute;ximo:</h6> <b>15º</b>
+                <input id="temp_slider" type="text" class="span2" value="" data-slider-min="15" data-slider-max="30" data-slider-step="0.1" data-slider-value="[21.5,22.6]"/> <b>30º</b>
+              </div>
+
+
+
+          </div>
+        </div>
+
+
+
+        <div class="tab-pane fade" id="tab_configuration">
+          <h2>Configuraci&oacute;n      </h2>
+
+          <!-- la form de configuraciónav -->
+          <!-- <form role="form" action="/saveconfig"> -->
+            <div class="padding">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="box">
+                    <div class="box-divider m-0"></div>
+                    <div class="box-body">
+
+                      <div class="form-group">
+                        <label for="version">version</label>
+                        <input type="text" class="form-control" name="version" id="version" value="">
+                      </div>
+                      <div class="form-group">
+                        <label for="EEPROM_chk">EEPROM_chk</label>
+                        <input type="text" class="form-control" name="EEPROM_chk" id="EEPROM_chk" value="">
+                      </div>
+                      <div class="form-group">
+                        <label for="version">DevName</label>
+                        <input type="text" class="form-control" name="DevName" id="DevName" value="">
+                      </div>
+                      <div class="form-group">
+                        <label for="version">Latitud</label>
+                        <input type="text" class="form-control" name="Latitud" id="Latitud" value="">
+                      </div>
+                      <div class="form-group">
+                        <label for="version">Longitud</label>
+                        <input type="text" class="form-control" name="Longitud" id="Longitud" value="">
+                      </div>
+                      <div class="form-group">
+                        <label for="version">TimeZone</label>
+                        <input type="text" class="form-control" name="TimeZone" id="TimeZone" value="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="box">
+                    <div class="box-divider m-0"></div>
+                    <div class="box-body">
+                      <div class="form-group row">
+                        <label for="IP_1" class="col-sm-2 form-control-label">IP_1</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="IP_1" name="IP_1">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="IP_2" class="col-sm-2 form-control-label">IP_2</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="IP_2" name="IP_2" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="IP_3" class="col-sm-2 form-control-label">IP_3</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="IP_3" name="IP_3" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="IP_4" class="col-sm-2 form-control-label">IP_4</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="IP_4" name="IP_4" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <small>Cayenne integration</small>
+                        <label for="username" class="col-sm-2 form-control-label">username</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="username" name="username" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="password" class="col-sm-2 form-control-label">password</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="password" name="password" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="clientID" class="col-sm-2 form-control-label">clientID</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="clientID" name="clientID" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="pwd" class="col-sm-2 form-control-label">passwd</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="pwd" name="pwd" >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button id="saveconfig" class="btn btn-primary">Save</button>
+            <!-- <button type="submit" class="btn btn-primary">Save</button> -->
+          <!-- </form> -->
+        </div>
+
+<!-- fin de form de configuración -->
+
+
+        <div class="row" style="  width:100%">
+          <p> <span id="separador"></span></p>
+        </div>
+
+
+          <div class="btn-group">
+            <button class="btn btn-default" id="labelTheme">Theme</button>
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a class="change-style-menu-item" href="#" rel="bootstrap">Boostrap</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="cerulean">Cerulean</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="cosmo">Cosmo</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="cyborg">Cyborg</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="darkly">Darkly</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="flatly">Flatly</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="journal">Journal</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="lumen">Lumen</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="paper">Paper</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="readable">Readable</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="sandstone">Sandstone</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="simplex">Simplex</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="slate">Slate</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="spacelab">Spacelab</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="superhero">Superhero</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="united">United</a></li>
+              <li><a class="change-style-menu-item" href="#" rel="yeti">Yeti  </a></li>
+            </ul>
+          </div>
+        </div>
+
+      <div class="row" style="  width:100%">
+        <p> <span id="separador"></span></p>
+      </div>
+      <!-- <div class="row" style="position:absolute; bottom:0; width:100%"> -->
+      <div class="row" style="  width:100%">
+        <div class="col-xs-2 col-md-2"><img src="img/logo.png" width="100" height="100"></div>
+        <div class="col-xs-5 col-md-5">
+          <p>Hora UTC NodeMCU: <span id="horanodemcu"></span></p>
+        </div>
+        <div class="col-xs-5 col-md-5">
+          <p>Hora local Ordenador: <span id="datetime"></span></p>
+        </div>
+      </div>
+
+      <div class="row" style="  width:100%">
+        <div class="col-xs-10 col-md-10">
+          <p><span id="mensajes"></span></p>
+        </div>
+      </div>
+
+      <!--modal para load default configuration-->
+      <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Default Data </h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h3>¿Esta seguro de cargar los datos por defecto?</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button"  id="close" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button type="button" id="save" class="btn btn-primary" >OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <!--script(src='js/script.js')-->
+
+    <script>
+
+  var temp_slider2 = $("#temp_slider2").slider();
+    var temp_slider = $("#temp_slider").slider();
+    //temp_slider.slider('setValue', [17,28])
+
+    $("#temp_slider").change(function(){
+      var temp_objetivo = temp_slider.slider('getValue');
+      console.log(temp_objetivo);
+      savetemp(temp_objetivo);
+    });
+
+    function savetemp(temp_objetivo){
+      $.post("savetemp?cmd=" + 'savetemp' +
+        "&temp_max=" + temp_objetivo[1]+
+        "&temp_min=" + temp_objetivo[0]
+        ).done(function(data){
+          if ( data.success === "1" ) {
+            showSuccess("Datos grabados");
+            //loadData();
+          } else {
+              showError("error grabando los datos")
+          }
+        }).fail(function(err){
+          console.log("err saving data " + JSON.stringify(err));
+        });
+    }
+
+    $("#saveconfig").click(function(){
+        console.log("gurardando configuración");
+        saveconfig();
+    });
+
+    function saveconfig(){
+
+      timers[nr].prog[i].name = $("#txt_name_prog"+i).val()
+      conf['version']=$('#version').val();
+      conf['EEPROM_chk']=$('#EEPROM_chk').val();
+      conf['DevName']=$('#DevName').val();
+      conf['Latitud']=$('#Latitud').val();
+      conf['Longitud']=$('#Longitud').val();
+      conf['TimeZone']=$('#TimeZone').val();
+      conf['IP_1']=$('#IP_1').val();
+      conf['IP_2']=$('#IP_2').val(x);
+      conf['IP_3']=$('#IP_3').val();
+      conf['IP_4']=$('#IP_4').val();
+      conf['username']=$('#username').val();
+      conf['password']=$('#password').val();
+      conf['clientID']=$('#clientID').val();
+      conf['pwd']=$('#pwd').val();
+      conf['sunrise']=$('#sunrise').val();
+      conf['sunset']=$('#sunset').val();
+      temp_objetivo = temp_slider.slider('getValue');
+      conf["temp_max"]=temp_objetivo[1];
+      conf["temp_min"]=temp_objetivo[0];
+
+
+      $.post("saveconfig?cmd=" + 'saveconfig' +
+        "&temp_max=" + temp_objetivo[0]+
+        "&temp_min=" + temp_objetivo[1]+
+        "&DevName=" + conf["DevName"]+
+        "&version=" + conf["version"]+
+        "&EEPROM_chk=" + conf["EEPROM_chk"]+
+        "&Latitud=" + conf["Latitud"]+
+        "&Longitud=" + conf["Longitud"]+
+        "&TimeZone=" + conf["TimeZone"]+
+        "&IP_1=" + conf["IP_1"]+
+        "&IP_2=" + conf["IP_2"]+
+        "&IP_3=" + conf["IP_3"]+
+        "&IP_4=" + conf["IP_4"]+
+        "&username=" + conf["username"]+
+        "&password=" + conf["password"]+
+        "&clientID=" + conf["clientID"]+
+        "&pwd=" + conf["pwd"]+
+        "&temp_max=" + conf["temp_max"]+
+        "&temp_min=" + conf["temp_min"]
+        ).done(function(data){
+          if ( data.success === "1" ) {
+            showSuccess("Config grabada");
+            console.log(conf);
+            //loadData();
+          } else {
+              showError("error grabando config")
+          }
+        }).fail(function(err){
+          console.log("err saving config " + JSON.stringify(err));
+        });
+    }
+
+
+      //para los botones de modal load default configuration
+      $("#but_defecto").hide();//ocualta los botones inicialmente
+      $("#but_alloff").hide();
+
+      function save_all(){
+        for (i=0;i<num_total_reles;i++){
+          nr=i;
+          savemode();
+          for(k=0;k<7;k++){ // 7  porgramas
+            save_d(nr,k);
+          }
+        }
+        $("#mensajes").html("datos guardados.");
+        loadData();
+      }
+
+      $("#save").on("click", function()
+      {
+            $("#basicModal").modal('hide');
+            //cargar y guardar los datos por defecto JsonString
+            $("#mensajes").html("Espere, configurando datos por defecto");
+            $('#contentA').hide("slow",function(){
+                $("#contentA").html("espere, cargando datos por defecto");
+                $("#mensajes").html("Espere, configurando datos por defecto");
+                console.log("cargando datos por defecto");
+                $("#piIp").val("test");
+                getData();
+                save_all();
+                $("#piIp").val(conf["pwd"]);
+                $("#mensajes").html("All OK");
+                $('#contentA').show();
+            });
+      });
+
+        $("#close").on("click", function()
+        {
+        });
+
+
+        $("#but_alloff").on("click", function()
+        {
+          $("#mensajes").html("espere, poniendo todos OFF");
+          $('#contentA').hide("slow",function(){
+            for(i=0;i<num_total_reles;i++){
+              for(j=0;j<7;j++){ // 7  porgramas
+                timers[i].prog[j].startTime="00:00";
+                timers[i].prog[j].endTime="00:00";
+                timers[i].prog[j].aleatorio="00:00";
+                for(k=0;k<7;k++){ // 7 dias
+                  timers[i].prog[j].days[k]=false;
+                }
+              }
+            }
+            j=0;
+            save_all();
+            loadData();
+            $("#mensajes").html("All OK");
+            $('#contentA').show();
+          });
+
+      });
+
+
+      $(".btn-group > .btn").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+      });
+
+
+    var dt = new Date();
+    document.getElementById("datetime").innerHTML =
+    (("0"+dt.getDate()).slice(-2)) +"."+ (("0"+(dt.getMonth()+1)).slice(-2)) +"."
+    + (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2))
+    +":"+ (("0"+dt.getMinutes()).slice(-2));
+
+    </script>
+
+    <script>
+      var Timer_UdpateMesures;
+      //var num_rele=-1;
+      var num_total_reles=4;
+
+      var conf = [];
+      var timers=[];
+      var tiempo_timers=[];
+      var tiempo_conf;
+      var conf_recibida=false;
+
+      $( document ).ready(function() {
+              console.log( "document loaded" );
+              $("#mensajes").html("web cargada, esperando recibir configuración del NodeMCU. espere por favor");
+
+              setInterval(function(){
+                updateMesures();
+                updateGPIO();
+                updateTime();
+                updateTimeNodemcu();
+                getConfig(); //cada vez que se cambia de pestaña se actualizan todos los datos timers y conf
+              },60000);
+      });
+
+
+          function updateTime(){
+          //  console.log("updateTime");
+          var dt = new Date();
+          document.getElementById("datetime").innerHTML =
+          (("0"+dt.getDate()).slice(-2)) +"."+ (("0"+(dt.getMonth()+1)).slice(-2)) +"."
+          + (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2))
+          +":"+ (("0"+dt.getMinutes()).slice(-2))
+          +":"+ (("0"+dt.getSeconds()).slice(-2));
+          };
+
+          function updateTimeNodemcu(){
+            $.getJSON('/hora.json', function(data){
+              var  cadena= data.Fecha+' '+data.hora;
+              $('#horanodemcu').html(cadena);
+            }).fail(function(err){
+              console.log("err getJSON hora.json "+JSON.stringify(err));
+            });
+          };
+
+          function receiveDataTimers(j){
+            //num_rele++;
+            //if(num_rele>=num_total_reles){num_rele=0;}
+            actual=new Date();
+            if ((actual - tiempo_timers[j])<20000){ return; } //esperar almenos 15 segundos para hacer otra llamada
+            tiempo_timers[j]=actual;
+            $.getJSON('/sendDataTimers.json','devID='+j, function(data){
+              ProgObject = JSON.parse(JSON.stringify(data));
+              var j=ProgObject["devID"];
+              if (ProgObject["prog"][0]["days"].length>0){
+                timers[j] = ProgObject;
+                console.log("timers");
+                console.log(timers);
+              }
+
+              }).fail(function(err){
+              console.log("err getJSON sendDataTimers.json "+JSON.stringify(err));
+            });
+          };
+
+          function receiveDataConf(){
+            actual=new Date();
+            if ((actual - tiempo_conf)<20000){ return; } //esperar almenos 15 segundos para hacer otra llamada
+              tiempo_conf=actual;
+            $.getJSON('/sendDataConf.json', function(data){
+              cObject = JSON.parse(JSON.stringify(data));
+              conf = cObject;
+              console.log("conf");
+              console.log(conf);
+              console.log(conf["DevName"])
+              newTitle=conf["DevName"];
+              if (document.title != newTitle) {
+                document.title = newTitle;
+              }
+                          //$('meta[name="description"]').attr("content", newDescription);
+                          $('#titulo').html(conf["DevName"]);
+                          conf_recibida=true;
+                          $("#mensajes").html("Configuración recibida, ya puede operar con seguridad");
+                          //para la configuracion
+                          $('#version').val(conf['version']);
+                          $('#EEPROM_chk').val(conf['EEPROM_chk']);
+                          $('#DevName').val(conf['DevName']);
+                          $('#Latitud').val(conf['Latitud']);
+                          $('#Longitud').val(conf['Longitud']);
+                          $('#TimeZone').val(conf['TimeZone']);
+                          $('#IP_1').val(conf['IP_1']);
+                          $('#IP_2').val(conf['IP_2']);
+                          $('#IP_3').val(conf['IP_3']);
+                          $('#IP_4').val(conf['IP_4']);
+                          $('#username').val(conf['username']);
+                          $('#password').val(conf['password']);
+                          $('#clientID').val(conf['clientID']);
+                          $('#pwd').val(conf['pwd']);
+                          $('#sunrise').val(conf['sunrise']);
+                          $('#sunset').val(conf['sunset']);
+                          temp_slider.slider('setValue', [conf['temp_min'],conf['temp_max']]);
+            }).fail(function(err){
+              console.log("err getJSON sendDataConf.json "+JSON.stringify(err));
+            });
+          };
+
+      $('a[data-toggle=\"tab\"]').on('shown.bs.tab', function (e) {
+        //On supprime tous les timers lorsqu'on change d'onglet
+        clearTimeout(Timer_UdpateMesures);
+        var target = $(e.target).attr("href")
+        console.log('activated ' + target );
+
+        // IE10, Firefox, Chrome, etc.
+        if (history.pushState)
+          window.history.pushState(null, null, target);
+        else
+          window.location.hash = target;
+
+        if (target=='#tab_mesures')  {
+            console.log('pidiendo tabmeasures ' + target );
+          $('#table_mesures').bootstrapTable('refresh',{silent:true, url:'/tabmesures.json'});
+        }
+      });
+
+      // Créé un timer qui actualise les données régulièrement - Create a timer than update data every n secondes
+      $('#tab_mesures').on('load-success.bs.table',function (e,data){
+        console.log("tab_mesures loaded");
+        if ($('.nav-tabs .active > a').attr('href')=='#tab_mesures') {
+          Timer_UdpateMesures=setTimeout(function(){
+            $('#table_mesures').bootstrapTable('refresh',{silent: true, showLoading: false, url: '/tabmesures.json'});
+            updateMesures();
+          },30000);
+        }
+      });
+
+      function updateMesures(){
+        $.getJSON('/mesures.json', function(data){
+          //console.log("Mesures envoyees : " + JSON.stringify(data) + "|" + data.t + "|" + data.h + "|" + data.pa) ;
+          $('#temperature').html(data.t);
+          $('#mV_TDS').html(data.mV_TDS);
+          $('#tdsValue').html(data.tdsValue);
+        }).fail(function(err){
+          console.log("err getJSON mesures.json "+JSON.stringify(err));
+        });
+      };
+
+      function updateGPIO(){
+        $.getJSON('/readgpio.json', function(data){
+          //console.log("Mesures envoyees : " + JSON.stringify(data) + "|" + data.t + "|" + data.h + "|" + data.pa) ;
+          var est = ["OFF", "ON"]; //vienen 1 y 0 para que ponga ON/OFF
+          $('#D5_etat').html(est[data.D5]);
+          $('#D6_etat').html(est[data.D6]);
+          $('#D7_etat').html(est[data.D7]);
+          $('#D8_etat').html(est[data.D8]);
+          $('#D0_etat').html(est[data.D7]);
+          $('#D4_etat').html(est[data.D8]);
+        }).fail(function(err){
+          console.log("err getJSON mesures.json "+JSON.stringify(err));
+        });
+      };
+
+      function labelFormatter(valor, row){
+        //console.log("labelFormatter");
+        console.log(valor);
+        console.log(row);
+
+        var label = "";
+        if ( valor === "Temperatura" ) {
+          label = valor + "<i class='fa fa-thermometer-half'></i>";
+        } else if ( valor === "mV_TDS" ) {
+          label = valor + "<i class='fa fa-fw fa-umbrella'></i>";
+        } else if ( valor === "TDS" ) {
+          label = valor + "<i class='fa fa-fw fa-cloud'></i>";
+        } else {
+          label = valor;
+        }
+        return label;
+      }
+      function valueFormatter(valor, row){
+        //console.log("valueFormatter");class="fa fa-exchange" fa-level-down fa-level-up
+        var label = "";
+        if ( row.valor > row.precedente ) {
+          label = valor + row.unidad + "<i class='fa fa-fw fa-chevron-up'></i>";
+        } else {
+          label = valor + row.unidad + "<i class='fa fa-fw fa-chevron-down'></i>";
+        }
+        if ( row.valor == row.precedente ) {
+            label = valor + row.unidad + "<i class='fa fa-fw fa-exchange'></i>";
+        }
+        return label;
+      }
+      function vpFormatter(valor, row){
+        //console.log("valueFormatter");
+        var label = "";
+        if ( row.valor > row.precedente ) {
+          label = valor + row.unidad
+        } else {
+          label = valor + row.unidad
+        }
+        return label;
+      }
+
+      // Commandes sur le GPIO - GPIO change
+      $('#D5_On').click(function(){ setBouton('D5','1'); });
+      $('#D5_Off').click(function(){ setBouton('D5','0'); });
+      $('#D6_On').click(function(){ setBouton('D6','1'); });
+      $('#D6_Off').click(function(){ setBouton('D6','0'); });
+      $('#D7_On').click(function(){ setBouton('D7','1'); });
+      $('#D7_Off').click(function(){ setBouton('D7','0'); });
+      $('#D8_On').click(function(){ setBouton('D8','1'); });
+      $('#D8_Off').click(function(){ setBouton('D8','0'); });
+
+      $('#D0_On').click(function(){ setBouton('D0','1'); });
+      $('#D0_Off').click(function(){ setBouton('D0','0'); });
+      $('#D4_On').click(function(){ setBouton('D4','1'); });
+      $('#D4_Off').click(function(){ setBouton('D4','0'); });
+
+      function setBouton(id, etat){
+        $.post("gpio?id=" + id + "&etat=" + etat).done(function(data){
+          //console.log("Retour setBouton " + JSON.stringify(data));
+          var id_gpio = "#" + id + "_etat";
+          //console.log(id_gpio);
+          if ( data.success === "1" ) {
+            if ( data.etat === "1" ) {
+              $(id_gpio).html("ON");
+            } else {
+              $(id_gpio).html("OFF");
+            }
+          } else {
+            $(id_gpio).html('!');
+          }
+        }).fail(function(err){
+          console.log("err setButton " + JSON.stringify(err));
+        });
+      }
+
+      // Changement du thème - Change current theme
+      // Adapté de - Adapted from : https://wdtz.org/bootswatch-theme-selector.html
+      var supports_storage = supports_html5_storage();
+      if (supports_storage) {
+        var theme = localStorage.theme;
+        console.log("Recharge le theme " + theme);
+        if (theme) {
+          set_theme(get_themeUrl(theme));
+        }
+      }
+
+      // Un nouveau thème est sélectionné - New theme selected
+      jQuery(function($){
+        $('body').on('click', '.change-style-menu-item', function() {
+          var theme_name = $(this).attr('rel');
+          console.log("Changement de theme " + theme_name);
+          var theme_url = get_themeUrl(theme_name);
+          console.log("URL theme : " + theme_url);
+          set_theme(theme_url);
+        });
+      });
+      // Recupere l'adresse du theme - Get theme URL
+      function get_themeUrl(theme_name){
+        $('#labelTheme').html("Th&egrave;me : " + theme_name);
+        var url_theme = "";
+        if ( theme_name === "bootstrap" ) {
+          url_theme = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+        } else {
+          url_theme = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/" + theme_name + "/bootstrap.min.css";
+        }
+        if (supports_storage) {
+          // Enregistre le theme sélectionné en local - save into the local database the selected theme
+          localStorage.theme = theme_name;
+        }
+        return url_theme;
+      }
+      // Applique le thème - Apply theme
+      function set_theme(theme_url) {
+        $('link[title="main"]').attr('href', theme_url);
+      }
+      // Stockage local disponible ? - local storage available ?
+      function supports_html5_storage(){
+        try {
+          return 'localStorage' in window && window['localStorage'] !== null;
+        } catch (e) {
+          return false;
+        }
+      }
+
+
+
+  </script>

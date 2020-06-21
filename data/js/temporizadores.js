@@ -106,6 +106,7 @@ function clickOn(nr)
 {
   timers[nr].Mode = 1;
   timers[nr].ReleName = $("#txt_name_rele"+nr).val();
+  $("#btn_man_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
   $("#btn_auto_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
   $("#btn_off_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
   $("#btn_on_prog"+nr).attr('class', 'btn btn btn-success btn-lg');
@@ -116,6 +117,7 @@ function clickOn(nr)
   {
       timers[nr].Mode = 0;
       timers[nr].ReleName = $("#txt_name_rele"+nr).val();
+      $("#btn_man_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
       $("#btn_auto_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
       $("#btn_off_prog"+nr).attr('class', 'btn btn-danger btn-lg');
       $("#btn_on_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
@@ -126,11 +128,22 @@ function clickOn(nr)
     {
         timers[nr].Mode = 2;
         timers[nr].ReleName = $("#txt_name_rele"+nr).val();
+        $("#btn_man_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
         $("#btn_auto_prog"+nr).attr('class', 'btn btn-success btn-lg');
         $("#btn_off_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
         $("#btn_on_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
         savemode();
       }
+      function clickMan(nr)
+      {
+          timers[nr].Mode = 3;
+          timers[nr].ReleName = $("#txt_name_rele"+nr).val();
+          $("#btn_man_prog"+nr).attr('class', 'btn btn-success btn-lg');
+          $("#btn_auto_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
+          $("#btn_off_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
+          $("#btn_on_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
+          savemode();
+        }
 
       function savemode(){
         //timers[nr].ReleName = $("#txt_name_rele"+nr).val(); ya está leido en los click
@@ -152,8 +165,17 @@ function clickOn(nr)
 
       }
 
+      function man(nr)
+      {
+        $("#btn_man_prog"+nr).attr('class', 'btn btn-success btn-lg');
+        $("#btn_auto_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
+        $("#btn_off_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
+        $("#btn_on_prog"+nr).attr('class', 'btn btn btn-secondary btn-lg');
+      }
+
     function on(nr)
     {
+      $("#btn_man_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
       $("#btn_auto_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
       $("#btn_off_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
       $("#btn_on_prog"+nr).attr('class', 'btn btn btn-success btn-lg');
@@ -161,6 +183,7 @@ function clickOn(nr)
 
     function off(nr)
     {
+      $("#btn_man_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
       $("#btn_auto_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
       $("#btn_off_prog"+nr).attr('class', 'btn btn-danger btn-lg');
       $("#btn_on_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
@@ -168,6 +191,7 @@ function clickOn(nr)
 
     function auto(nr)
     {
+        $("#btn_man_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
         $("#btn_auto_prog"+nr).attr('class', 'btn btn-success btn-lg');
         $("#btn_off_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
         $("#btn_on_prog"+nr).attr('class', 'btn btn-secondary btn-lg');
@@ -272,8 +296,9 @@ function clickOn(nr)
                 str += "<tr>"
                 str += "<td colspan=\"5\"><input type=\"text\" id=\"txt_name_rele"+nr+"\" style=\"font-size: 24px; background: #ffffff; border: 0\" value=\""+name+"\"></h2></td></tr>"
                 str += "<tr><td style=\"margin: 0\"><button type=\"button\" id=\"btn_on_prog"+nr+"\" class=\"btn btn-secondary btn-lg\">On</button></td>"
-                str += "<td style=\"padding-left: 10px\"><button type=\"button\" class=\"btn btn-secondary btn-lg\" id=\"btn_off_prog"+nr+"\">Off</button></td>"
-                str += "<td style=\"padding-left: 10px\"><button type=\"button\" class=\"btn btn-secondary btn-lg\" id=\"btn_auto_prog"+nr+"\">Auto</button></td>"
+                str += "<td style=\"padding-left: 5px\"><button type=\"button\" class=\"btn btn-secondary btn-lg\" id=\"btn_off_prog"+nr+"\">Off</button></td>"
+                str += "<td style=\"padding-left: 5px\"><button type=\"button\" class=\"btn btn-secondary btn-lg\" id=\"btn_auto_prog"+nr+"\">Auto</button></td>"
+                str += "<td style=\"padding-left: 5px\"><button type=\"button\" class=\"btn btn-secondary btn-lg\" id=\"btn_man_prog"+nr+"\">Man</button></td>"
                 str +="<td>(UTC) Sunrise <span id='sunrise'>"+sunrise+"</span></td>"
                 str +="<td>Sunset <span id='sunset'>"+sunset+"</span></td>"
                 str += "</tr></table></td>"
@@ -293,12 +318,21 @@ function clickOn(nr)
                   else if (timers[nr].Mode == 0)
                   {
                     off(nr);
-                  }else{
+                  }
+                  else if (timers[nr].Mode == 3)
+                  {
+                    man(nr);
+                  }
+                  else{
                     auto(nr);
                   }
 
 
             (function(nr) {
+              $("#btn_man_prog"+nr).on("click", function()
+              {
+                clickMan(nr);
+              });
               $("#btn_auto_prog"+nr).on("click", function()
               {
                 clickAuto(nr);
@@ -524,6 +558,7 @@ function clickOn(nr)
               if (conf_recibida==false){
                 showError("Intentar mas tarde, config no recibida");
                 	$("#mensajes").html("Intentar mas tarde, config no recibida");
+                  $(".alert small").text("Intentar mas tarde, config no recibida");
               }
 
               if(piIp==conf["pwd"])
@@ -548,6 +583,7 @@ function clickOn(nr)
                 $("#but_defecto").show();
                 $("#but_alloff").show();
                 $("#mensajes").html("Espere a recargar configuración");
+                $(".alert small").text("Espere a recargar configuración");
               });
 
               showError("Espere, se est&aacute;n cargando los datos del servidor");

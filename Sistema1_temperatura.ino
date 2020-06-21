@@ -76,6 +76,7 @@ void setup() {
   server.on("/save", save);
   server.on("/savemode", savemode);
   server.on("/saveconfig", saveconfig_http);
+  server.on("/savetemp", savetemp);
 
   server.serveStatic("/js", SPIFFS, "/js");
   server.serveStatic("/css", SPIFFS, "/css");
@@ -99,6 +100,7 @@ void loop() {
   CheckNTPtime();
   server_read();
   horasolar();
+  controltemperatura();
   for (j=0;j<Num_reles;j++){  controlTimers(j);}
   
 }

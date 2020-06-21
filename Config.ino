@@ -1,5 +1,5 @@
 void setupConfig(){
-    for ( int x = 0 ; x < 5 ; x++ ) {
+    for ( int x = 0 ; x < 7 ; x++ ) {
     pinMode(GPIOPIN[x], OUTPUT);
     digitalWrite(GPIOPIN[x],HIGH);
   }

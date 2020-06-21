@@ -12,16 +12,20 @@
 //#define password  "P9EnMuxD"  // WiFi password
 //#define DHTTYPE   DHT22           // DHT type (DHT11, DHT22)
 //#define DHTPIN    D0              // Broche du DHT / DHT Pin
-const uint8_t GPIOPIN[4] = {D4,D6,D7,D8};  // cambiar D4 a D5
-#define      Relay_D5        D4   // (D5) 
+const uint8_t GPIOPIN[6] = {D5,D6,D7,D8,D0,D4};  // cambiar D4 a D5
+#define      Relay_D5        D5   // (D5) 
 #define      Relay_D6        D6   // (D6) 
 #define      Relay_D7        D7   // (D7) 
 #define      Relay_D8        D8   // (D8) 
 
+#define      Relay_D0_calentador        D0     
+#define      Relay_D4_ventilador        D4    
+
+
 float     t = 0 ;
 float     h = 0 ;
 float     pa = 0;
-boolean   estados[4]; //estados de los relés
+boolean   estados[6]; //estados de los relés //se añaden los D0 y D4 calentador y ventilador
 int       Num_reles=4;
 int       i,j,k;
 char      username[] = "f09f34e0-99d9-11ea-a67f-15e30d90bbf4"; //Cayenne
@@ -62,6 +66,9 @@ struct StoreStruct2 {
   char          pwd[8];
   int           sunrise;
   int           sunset;
+  float         temp_max;
+  float         temp_min;
+  int           temp_mode;
 } conf ;
 
 

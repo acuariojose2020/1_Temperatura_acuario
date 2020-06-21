@@ -6,10 +6,13 @@
 float temperatureC;
 float mV_TDS;
 float tdsValue;
+float t_objetivo = 22; //????
+float t_histeresis = 5; 
 
 float temperatureC_ant;
 float mV_TDS_ant;
 float tdsValue_ant;
+
 
 // GPIO where the DS18B20 is connected to
 const int oneWireBus = 3;    
@@ -70,16 +73,45 @@ void TDS_DS18B20(){
   temperatureC_ant=temperatureC;
   temperatureC = sensors.getTempCByIndex(0);
   float temperatureF = sensors.getTempFByIndex(0);
-  Serial.print(temperatureC);
-  Serial.println("ºC");
+  //Serial.print(temperatureC);
+  //Serial.println("ºC");
   //Serial.print(temperatureF);
   //Serial.println("ºF");
   
   //float multiplier = 0.1875F; /* ADS1115  @ +/- 6.144V gain (16-bit results) */
   float multiplier = 0.125F;  // ganancia 1
   int16_t results = ads.readADC_Differential_0_1();  
-  Serial.print("Differential: "); Serial.print(results); Serial.print("("); Serial.print(results * multiplier); Serial.println("mV)");
+ // Serial.print("Differential: "); Serial.print(results); Serial.print("("); Serial.print(results * multiplier); Serial.println("mV)");
   mV_TDS_ant=mV_TDS;
   mV_TDS=results * multiplier;
   Gravity_TDS(); //para convertir los voltios en valor
+}
+
+void activarRelTemp(int e1, int e2){
+  estados[4]=e1;
+  estados[5]=e2;
+  //Serial.println("estados e1");Serial.println(e1);
+  //Serial.println("estados e2");Serial.println(e2);
+  e1=!e1; //en Nodem van al revés
+  e2=!e2;
+    digitalWrite(Relay_D0_calentador,e1);
+    digitalWrite(Relay_D4_ventilador,e2);
+  }
+  
+void controltemperatura(){
+  //Serial.println("conf.temp_mode");Serial.println(conf.temp_mode);
+  if (conf.temp_mode==0){activarRelTemp(0, 0);return;}
+  if (conf.temp_mode==1){activarRelTemp(1, 1);return;}
+  //if (conf.temp_mode==2){} //auto
+  if (conf.temp_mode==3){return;} //manual
+ 
+  if (temperatureC > conf.temp_max){
+    activarRelTemp(0, 1);
+    }
+    if (temperatureC < conf.temp_min){
+     activarRelTemp(1, 0);
+    }
+    if (temperatureC > conf.temp_min && temperatureC < conf.temp_max ){
+      activarRelTemp(0, 0);
+    }
 }

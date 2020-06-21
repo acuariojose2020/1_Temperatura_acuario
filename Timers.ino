@@ -57,7 +57,7 @@ void controlTimers(int j){
     return;
   }
   
-  // Is mode invalid
+  // Is mode invalid or auto=3
   if (timers[j].Mode != 2) {
     return;
   }
@@ -113,8 +113,10 @@ void controlTimers(int j){
                 break; //ya se encontro un timer anterior activado y salimos.
         } //d
       }
-        
-       control_rele(j,salida);
+
+        if (pactivo>0){ //si no hay ningún dia seleccionado dejar en manual
+          control_rele(j,salida);
+        }
        
       Serial.print("control timers rele :");
       Serial.print(j);

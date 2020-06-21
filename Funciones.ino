@@ -170,6 +170,9 @@ void sendDataTimers(){
       doc["clientID"] =     conf.clientID;
       doc["sunrise"] =      salida;
       doc["sunset"] =       puesta;
+      doc["temp_max"] =       conf.temp_max;
+      doc["temp_min"] =       conf.temp_min;
+      doc["temp_mode"] =       conf.temp_mode;
     
       String json="";
       serializeJson(doc, json);
@@ -291,6 +294,9 @@ void saveconfig_http(){
     valor.toCharArray(conf.clientID, 50);
     valor= server.arg("pwd");
     valor.toCharArray(conf.pwd, 30);
+    conf.temp_max = server.arg("temp_max").toFloat();
+    conf.temp_min = server.arg("temp_min").toFloat();
+    conf.temp_mode = server.arg("temp_mode").toInt();
     //strcpy(conf.pwd,server.arg("pwd"));
    
     saveConfig();
@@ -302,11 +308,23 @@ void saveconfig_http(){
   json += "\"conseguido\":\"" + String(success) + "\",";
   json += "\"success\":\"" + String(success) + "\"}";
   //server.send(200, "application/json", json);
-  server.sendHeader("Location", String("/#tab_configuration"), true);
-  server.send ( 302, "text/plain", "");
+  //server.sendHeader("Location", String("/#tab_configuration"), true);
+  //server.send ( 302, "text/plain", "");
   //server.send ( 200, "text/plain", "");
  }
 
+void savetemp(){
+    Serial.println("Recibido comando savetemp");
+    conf.temp_max = server.arg("temp_max").toFloat();
+    conf.temp_min = server.arg("temp_min").toFloat();
+    saveConfig();
+    String success = "1";
+  String json = "{\"conf.temp_max\":\"" + String(conf.temp_max) + "\",";
+  json += "\"conseguido\":\"" + String(success) + "\",";
+  json += "\"success\":\"" + String(success) + "\"}";
+  server.send(200, "application/json", json);
+ }
+ 
  void print_horasolar(){
       char cadena[20];
     Serial.print("TimeOk: ");Serial.println(TimeOk);
@@ -373,8 +391,14 @@ void updateGpio(){
  } else if ( gpio == "D8" ) {
      pin = D8;  
      num_pin=3;
+  } else if ( gpio == "D0" ) {
+     pin = D0;
+     num_pin=4;
+ } else if ( gpio == "D4" ) {
+     pin = D4;
+     num_pin=5;
  } else {   
-      pin = D4;
+      pin = D5;
       num_pin=0;
   }
   Serial.println(pin);
@@ -411,7 +435,9 @@ void sendGPIO() {
   String json = "{\"D5\":\"" + String(estados[0]) + "\",";
   json += "\"D6\":\"" + String(estados[1]) + "\",";
   json += "\"D7\":\"" + String(estados[2]) + "\",";
-  json += "\"D8\":\"" + String(estados[3]) + "\"}";
+  json += "\"D8\":\"" + String(estados[3]) + "\",";
+  json += "\"D0\":\"" + String(estados[4]) + "\",";
+  json += "\"D4\":\"" + String(estados[5]) + "\"}";
 
   server.send(200, "application/json", json);
   Serial.println("GPIO enviado");
@@ -433,7 +459,6 @@ void sendTabMesures() {
 }
 
 void horasolar(){
-  
             spa.year = year();
             spa.month = month();
             spa.day = day();
@@ -453,7 +478,6 @@ void horasolar(){
             spa.atmos_refract = 0.5667;
             spa.function = SPA_ALL;
             spa_calculate(&spa);    
-  
-  }
+   }
 
  

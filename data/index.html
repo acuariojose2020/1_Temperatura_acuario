@@ -6,24 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Acuario-Sistema3</title>
+    <title>Acuario-Sistema1</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <!-- <script src="https://code.jquery.com/ui/jquery-ui-git.js"></script> -->
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.css" >
-
-
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
         <!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"> -->
         <!-- <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script> -->
 
       <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script> -->
+      <!-- <script src="js/bootstrap-table.min.js"></script> -->
+      <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css"> -->
+      <!-- <link rel="stylesheet" href="css/bootstrap-table.min.css"> -->
+
 
       <link rel="stylesheet" href="css/acuario.css">
 
@@ -32,7 +31,11 @@
       <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
       <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.css" >
 
+      <!-- <link rel="stylesheet" href="https://bootswatch.com/_assets/css/custom.min.css">
+      <script src="https://bootswatch.com/_assets/js/custom.js"></script> -->
 
     </head>
 
@@ -55,13 +58,14 @@
       <div class="tab-content">
         <div id="tab_mesures" class="tab-pane fade show active" >
           <h2><span id="titulo">Acuario - Sistema 1</span></h2>
+          <h6>TDS (Total Dissolved Solids) <span class="badge badge-primary">TDS</span></h6>
           <ul class="nav nav-pills">
             <li class="active"><a href="#">
-                <div class="badge badge-secondary badge-pill pull-right" id="temperature">-</div> Temperatura</a></li>
+                <div class="badge badge-info badge-pill pull-right" id="temperature">-</div> (ºC) Temperatura</a></li>
             <li><a href="#">
-                <div class="badge badge-secondary badge-pill pull-right" id="mV_TDS">-</div> mV_TDS</a></li>
+                <div class="badge badge-info badge-pill pull-right" id="mV_TDS">-</div> (mV) mV_TDS</a></li>
             <li><a href="#">
-                <div class="badge badge-secondary badge-pill pull-right" id="tdsValue">-</div> tdsValue</a></li>
+                <div class="badge badge-info badge-pill pull-right" id="tdsValue">-</div> (ppm) TDS</a></li>
           </ul><br>
           <table id="table_mesures" data-toggle="table" data-show-colunns="true">
             <thead>
@@ -78,7 +82,7 @@
         </div>
 
         <div class="tab-pane fade" id="tab_graphs">
-          <h2>Configure Timers</h2><span>Reles D5 - D6- D7 -D8</span><span style="color:blue"> Escriba la constraseña o "test" y click "GO" button</span>
+          <h2>Configure Timers</h2><span>Reles D5 - D6- D7 -D8</span><span style="color:blue"> &nbsp;  Escriba la constraseña o "test" y click "GO" button </span>
           <h4 class="text-center">
             Password : <input type="text" class="input-lg" id="piIp"> <button type="button" id="btn_go" class="btn btn-lg btn-success">Go</button>
           </h4>
@@ -104,7 +108,7 @@
           <div class="row">
             <div class="col-xs-6 col-md-4">
               <h4 class="text-left">D5
-                <span class="badge badge-secondary badge-pill" id="D5_etat">OFF</span>
+                <span class="badge badge-warning badge-pill" id="D5_etat">OFF</span>
               </h4>
             </div>
             <div class="col-xs-6 col-md-4">
@@ -115,7 +119,7 @@
             </div>
             <div class="col-xs-6 col-md-4">
               <h4 class="text-left">D6
-                <div class="badge badge-secondary badge-pill" id="D6_etat">OFF</div>
+                <div class="badge badge-warning badge-pill" id="D6_etat">OFF</div>
               </h4>
             </div>
             <div class="col-xs-6 col-md-4">
@@ -126,7 +130,7 @@
             </div>
             <div class="col-xs-6 col-md-4">
               <h4 class="text-left">D7
-                <div class="badge badge-secondary badge-pill" id="D7_etat">OFF</div>
+                <div class="badge badge-warning badge-pill" id="D7_etat">OFF</div>
               </h4>
             </div>
             <div class="col-xs-6 col-md-4">
@@ -137,7 +141,7 @@
             </div>
             <div class="col-xs-6 col-md-4">
               <h4 class="text-left">D8
-                <div class="badge badge-secondary badge-pill" id="D8_etat">OFF</div>
+                <div class="badge badge-warning badge-pill" id="D8_etat">OFF</div>
               </h4>
             </div>
             <div class="col-xs-6 col-md-4">
@@ -151,11 +155,11 @@
 
 
         <div class="tab-pane fade" id="tab_temp">
-          <h2>control Temperatura</h2>
+          <h2>Control Temperatura</h2>
           <div class="row">
             <div class="col-xs-6 col-md-4">
               <h4 class="text-left">D0 Calentador
-                <span class="badge badge-secondary badge-pill" id="D0_etat">OFF</span>
+                <span class="badge badge-warning badge-pill" id="D0_etat">OFF</span>
               </h4>
             </div>
             <div class="col-xs-6 col-md-4">
@@ -166,7 +170,7 @@
             </div>
             <div class="col-xs-6 col-md-4">
               <h4 class="text-left">D4 Ventilador
-                <div class="badge badge-secondary badge-pill" id="D4_etat">OFF</div>
+                <div class="badge badge-warning badge-pill" id="D4_etat">OFF</div>
               </h4>
             </div>
             <div class="col-xs-6 col-md-4">
@@ -175,15 +179,18 @@
             <div class="col-xs-6 col-md-4">
               <div class="button btn btn-danger btn-lg" id="D4_Off" type="button">OFF</div>
             </div>
-            <div class="row" style="  width:100%">
-              <p> <span id="separador33"></span></p>
-            </div>
-              <div class="col-xs-8 col-md-8">
+
+              <div class="col-xs-6 col-md-6">
                 <h6> Ajuste Temperatura M&aacute;nimo y M&iacute;ximo:</h6> <b>15º</b>
-                <input id="temp_slider" type="text" class="span2" value="" data-slider-min="15" data-slider-max="30" data-slider-step="0.1" data-slider-value="[21.5,22.6]"/> <b>30º</b>
+                <input id="temp_slider" type="text" class="span2" value="" data-slider-min="15" data-slider-max="30" data-slider-step="0.1" data-slider-value="[21.5,22.5]"/> <b>30º</b>
               </div>
 
-
+              <div class="btn-group">
+              <button type="button" class="btn btn-primary btn-lg" id="btn_control_on" >On</button>
+              <button type="button" class="btn btn-primary btn-lg" id="btn_control_off">Off</button>
+              <button type="button" class="btn btn-primary btn-lg" id="btn_control_auto">Auto</button>
+              <button type="button" class="btn btn-primary btn-lg" id="btn_control_man">Manual</button>
+              </div>
 
           </div>
         </div>
@@ -286,6 +293,35 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- variables de control temperatura -->
+                <div class="col-md-6">
+                  <div class="box">
+                    <div class="box-divider m-0"></div>
+                    <div class="box-body">
+                      <div class="form-group row">
+                        <label for="temp_max" class="col-sm-2 form-control-label">Temp Max (ºC)</label>
+                        <div class="col-sm-5">
+                          <input type="text" class="form-control" id="temp_max" name="temp_max">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="temp_min" class="col-sm-2 form-control-label">Temp min (ºC)</label>
+                        <div class="col-sm-5">
+                          <input type="text" class="form-control" id="temp_min" name="temp_min" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="temp_mode" class="col-sm-2 form-control-label">Modo de control (0-3)</label>
+                        <div class="col-sm-5">
+                          <input type="text" class="form-control" id="temp_mode" name="temp_mode" >
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+                <!-- fin variables control temperatura -->
+
               </div>
             </div>
             <button id="saveconfig" class="btn btn-primary">Save</button>
@@ -300,31 +336,8 @@
           <p> <span id="separador"></span></p>
         </div>
 
-
-          <div class="btn-group">
-            <button class="btn btn-default" id="labelTheme">Theme</button>
-            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a class="change-style-menu-item" href="#" rel="bootstrap">Boostrap</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="cerulean">Cerulean</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="cosmo">Cosmo</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="cyborg">Cyborg</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="darkly">Darkly</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="flatly">Flatly</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="journal">Journal</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="lumen">Lumen</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="paper">Paper</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="readable">Readable</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="sandstone">Sandstone</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="simplex">Simplex</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="slate">Slate</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="spacelab">Spacelab</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="superhero">Superhero</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="united">United</a></li>
-              <li><a class="change-style-menu-item" href="#" rel="yeti">Yeti  </a></li>
-            </ul>
-          </div>
         </div>
+         <!-- fin tab contain -->
 
       <div class="row" style="  width:100%">
         <p> <span id="separador"></span></p>
@@ -342,7 +355,7 @@
 
       <div class="row" style="  width:100%">
         <div class="col-xs-10 col-md-10">
-          <p><span id="mensajes"></span></p>
+          <p><span id="mensajes" style="color:blue"></span></p>
         </div>
       </div>
 
@@ -373,15 +386,17 @@
 
     <script>
 
-  var temp_slider2 = $("#temp_slider2").slider();
+
     var temp_slider = $("#temp_slider").slider();
     //temp_slider.slider('setValue', [17,28])
 
-    $("#temp_slider").change(function(){
-      var temp_objetivo = temp_slider.slider('getValue');
-      console.log(temp_objetivo);
-      savetemp(temp_objetivo);
+    $('#temp_slider').slider().on('slideStop', function(ev){
+        var temp_objetivo = $('.span2').data('slider').getValue();
+            console.log('Value Changed!', temp_objetivo);
+            $(".alert small").text('Value Changed!', temp_objetivo);
+            savetemp(temp_objetivo);
     });
+
 
     function savetemp(temp_objetivo){
       $.post("savetemp?cmd=" + 'savetemp' +
@@ -396,6 +411,7 @@
           }
         }).fail(function(err){
           console.log("err saving data " + JSON.stringify(err));
+          $(".alert small").text("err saving data " + JSON.stringify(err));
         });
     }
 
@@ -405,8 +421,6 @@
     });
 
     function saveconfig(){
-
-      timers[nr].prog[i].name = $("#txt_name_prog"+i).val()
       conf['version']=$('#version').val();
       conf['EEPROM_chk']=$('#EEPROM_chk').val();
       conf['DevName']=$('#DevName').val();
@@ -414,7 +428,7 @@
       conf['Longitud']=$('#Longitud').val();
       conf['TimeZone']=$('#TimeZone').val();
       conf['IP_1']=$('#IP_1').val();
-      conf['IP_2']=$('#IP_2').val(x);
+      conf['IP_2']=$('#IP_2').val();
       conf['IP_3']=$('#IP_3').val();
       conf['IP_4']=$('#IP_4').val();
       conf['username']=$('#username').val();
@@ -426,7 +440,6 @@
       temp_objetivo = temp_slider.slider('getValue');
       conf["temp_max"]=temp_objetivo[1];
       conf["temp_min"]=temp_objetivo[0];
-
 
       $.post("saveconfig?cmd=" + 'saveconfig' +
         "&temp_max=" + temp_objetivo[0]+
@@ -446,12 +459,15 @@
         "&clientID=" + conf["clientID"]+
         "&pwd=" + conf["pwd"]+
         "&temp_max=" + conf["temp_max"]+
-        "&temp_min=" + conf["temp_min"]
+        "&temp_min=" + conf["temp_min"]+
+        "&temp_mode=" +conf["temp_mode"]
         ).done(function(data){
           if ( data.success === "1" ) {
             showSuccess("Config grabada");
+            $(".alert small").text("Conf grabada!");
             console.log(conf);
-            //loadData();
+            $(".alert small").text( JSON.stringify(conf));
+            receiveDataConf();
           } else {
               showError("error grabando config")
           }
@@ -474,6 +490,7 @@
           }
         }
         $("#mensajes").html("datos guardados.");
+        $(".alert small").text("datos guardados.");
         loadData();
       }
 
@@ -482,15 +499,18 @@
             $("#basicModal").modal('hide');
             //cargar y guardar los datos por defecto JsonString
             $("#mensajes").html("Espere, configurando datos por defecto");
+            $(".alert small").text("Espere, configurando datos por defecto");
             $('#contentA').hide("slow",function(){
                 $("#contentA").html("espere, cargando datos por defecto");
                 $("#mensajes").html("Espere, configurando datos por defecto");
+                $(".alert small").text("Espere, configurando datos por defecto");
                 console.log("cargando datos por defecto");
                 $("#piIp").val("test");
                 getData();
                 save_all();
                 $("#piIp").val(conf["pwd"]);
                 $("#mensajes").html("All OK");
+                $(".alert small").text("All OK");
                 $('#contentA').show();
             });
       });
@@ -503,6 +523,7 @@
         $("#but_alloff").on("click", function()
         {
           $("#mensajes").html("espere, poniendo todos OFF");
+          $(".alert small").text("espere, poniendo todos OFF");
           $('#contentA').hide("slow",function(){
             for(i=0;i<num_total_reles;i++){
               for(j=0;j<7;j++){ // 7  porgramas
@@ -518,6 +539,7 @@
             save_all();
             loadData();
             $("#mensajes").html("All OK");
+            $(".alert small").text("All OK!");
             $('#contentA').show();
           });
 
@@ -526,7 +548,58 @@
 
       $(".btn-group > .btn").click(function(){
         $(this).addClass("active").siblings().removeClass("active");
+          controlbotonestemp(this);
       });
+
+      function controlbotonestemp(esto){
+          $("#btn_control_man").attr('class', 'btn btn btn-primary btn-lg');
+          $("#btn_control_on").attr('class', 'btn btn btn-primary btn-lg');
+          $("#btn_control_off").attr('class', 'btn btn btn-primary btn-lg');
+          $("#btn_control_auto").attr('class', 'btn btn btn-primary btn-lg');
+        if(esto.id=="btn_control_man"){
+            conf["temp_mode"]=3;
+            $(esto).attr('class', 'btn btn btn-warning btn-lg');
+        }
+        if(esto.id=="btn_control_on"){
+            conf["temp_mode"]=1;
+            //alert("Alarma! ha seleccionado tener encendidos el calentador y el ventilador al mismo tiempo, por favor verifique");
+            $(".alert small").text("Alarma! ha seleccionado tener encendidos el calentador y el ventilador al mismo tiempo, por favor verifique!");
+            $(esto).attr('class', 'btn btn btn-success btn-lg');
+        }
+        if(esto.id=="btn_control_off"){
+            conf["temp_mode"]=0;
+            $(esto).attr('class', 'btn btn btn-danger btn-lg');
+        }
+        if(esto.id=="btn_control_auto"){
+            conf["temp_mode"]=2;
+            $(esto).attr('class', 'btn btn btn-info btn-lg');
+        }
+        saveconfig();
+        updateGPIO();
+        dibujabotonestemp(conf["temp_mode"]);
+        $(".alert small").text("grabados datos conf");
+      }
+
+      function dibujabotonestemp(modo){
+          $("#btn_control_man").attr('class', 'btn btn btn-primary btn-lg');
+          $("#btn_control_on").attr('class', 'btn btn btn-primary btn-lg');
+          $("#btn_control_off").attr('class', 'btn btn btn-primary btn-lg');
+          $("#btn_control_auto").attr('class', 'btn btn btn-primary btn-lg');
+        if(modo==3){
+            conf["temp_mode"]=3;
+            $('#btn_control_man').attr('class', 'btn btn btn-warning btn-lg');
+        }
+        if(modo==1){
+            $(".alert small").text("Alarma! ha seleccionado tener encendidos el calentador y el ventilador al mismo tiempo, por favor verifique!");
+            $('#btn_control_on').attr('class', 'btn btn btn-success btn-lg');
+        }
+        if(modo==0){
+            $('#btn_control_off').attr('class', 'btn btn btn-danger btn-lg');
+        }
+        if(modo==2){
+            $('#btn_control_auto').attr('class', 'btn btn btn-info btn-lg');
+        }
+      }
 
 
     var dt = new Date();
@@ -551,8 +624,9 @@
       $( document ).ready(function() {
               console.log( "document loaded" );
               $("#mensajes").html("web cargada, esperando recibir configuración del NodeMCU. espere por favor");
-
+              $(".alert small").text("web cargada, esperando recibir configuración del NodeMCU. espere por favor");
               setInterval(function(){
+                $(".alert small").text("Leyendo datos del NodeMCU");
                 updateMesures();
                 updateGPIO();
                 updateTime();
@@ -594,6 +668,7 @@
                 timers[j] = ProgObject;
                 console.log("timers");
                 console.log(timers);
+                $(".alert small").text( JSON.stringify(timers));
               }
 
               }).fail(function(err){
@@ -602,6 +677,7 @@
           };
 
           function receiveDataConf(){
+            $(".alert small").text("Leyendo datos de configuración");
             actual=new Date();
             if ((actual - tiempo_conf)<20000){ return; } //esperar almenos 15 segundos para hacer otra llamada
               tiempo_conf=actual;
@@ -610,6 +686,7 @@
               conf = cObject;
               console.log("conf");
               console.log(conf);
+              $(".alert small").text( JSON.stringify(conf));
               console.log(conf["DevName"])
               newTitle=conf["DevName"];
               if (document.title != newTitle) {
@@ -619,6 +696,7 @@
                           $('#titulo').html(conf["DevName"]);
                           conf_recibida=true;
                           $("#mensajes").html("Configuración recibida, ya puede operar con seguridad");
+                          $(".alert small").text("Configuración recibida, ya puede operar con seguridad");
                           //para la configuracion
                           $('#version').val(conf['version']);
                           $('#EEPROM_chk').val(conf['EEPROM_chk']);
@@ -637,6 +715,10 @@
                           $('#sunrise').val(conf['sunrise']);
                           $('#sunset').val(conf['sunset']);
                           temp_slider.slider('setValue', [conf['temp_min'],conf['temp_max']]);
+                          $('#temp_max').val(conf['temp_max']);
+                          $('#temp_min').val(conf['temp_min']);
+                          $('#temp_mode').val(conf['temp_mode']);
+                          dibujabotonestemp(conf['temp_mode']);
             }).fail(function(err){
               console.log("err getJSON sendDataConf.json "+JSON.stringify(err));
             });
@@ -647,6 +729,11 @@
         clearTimeout(Timer_UdpateMesures);
         var target = $(e.target).attr("href")
         console.log('activated ' + target );
+        $(".alert small").text('activated ' + target);
+          if (target=='#tab_temp' || target=='#tab_gpio' )  {
+            $(".alert small").text("solicitando estado de relés");
+            updateGPIO();
+          }
 
         // IE10, Firefox, Chrome, etc.
         if (history.pushState)
@@ -685,13 +772,39 @@
       function updateGPIO(){
         $.getJSON('/readgpio.json', function(data){
           //console.log("Mesures envoyees : " + JSON.stringify(data) + "|" + data.t + "|" + data.h + "|" + data.pa) ;
+          $(".alert small").text( JSON.stringify(data));
           var est = ["OFF", "ON"]; //vienen 1 y 0 para que ponga ON/OFF
           $('#D5_etat').html(est[data.D5]);
+          $("#D5_etat").removeClass();
+          if(data.D5>0){$("#D5_etat").addClass("badge badge-success badge-pill");}
+          else{$("#D5_etat").addClass("badge badge-danger badge-pill");}
           $('#D6_etat').html(est[data.D6]);
+          $("#D6_etat").removeClass();
+          if(data.D6>0){$("#D6_etat").addClass("badge badge-success badge-pill");}
+          else{$("#D6_etat").addClass("badge badge-danger badge-pill");}
+
           $('#D7_etat').html(est[data.D7]);
+          $("#D7_etat").removeClass();
+          if(data.D7>0){$("#D7_etat").addClass("badge badge-success badge-pill");}
+          else{$("#D7_etat").addClass("badge badge-danger badge-pill");}
+
           $('#D8_etat').html(est[data.D8]);
-          $('#D0_etat').html(est[data.D7]);
-          $('#D4_etat').html(est[data.D8]);
+          $("#D8_etat").removeClass();
+          if(data.D8>0){$("#D8_etat").addClass("badge badge-success badge-pill");}
+          else{$("#D8_etat").addClass("badge badge-danger badge-pill");}
+
+          $('#D0_etat').html(est[data.D0]);
+          $("#D0_etat").removeClass();
+          if(data.D0>0){$("#D0_etat").addClass("badge badge-success badge-pill");}
+          else{$("#D0_etat").addClass("badge badge-danger badge-pill");}
+
+          $('#D4_etat').html(est[data.D4]);
+          $("#D4_etat").removeClass();
+          if(data.D4>0){$("#D4_etat").addClass("badge badge-success badge-pill");}
+          else{$("#D4_etat").addClass("badge badge-danger badge-pill");}
+
+
+
         }).fail(function(err){
           console.log("err getJSON mesures.json "+JSON.stringify(err));
         });
@@ -704,11 +817,11 @@
 
         var label = "";
         if ( valor === "Temperatura" ) {
-          label = valor + "<i class='fa fa-thermometer-half'></i>";
+          label = valor + "<i class='fa fa-thermometer-half' style='color:green'></i>";
         } else if ( valor === "mV_TDS" ) {
-          label = valor + "<i class='fa fa-fw fa-umbrella'></i>";
+          label = valor + "<i class='fa fa-fw fa-umbrella' style='color:green'></i>";
         } else if ( valor === "TDS" ) {
-          label = valor + "<i class='fa fa-fw fa-cloud'></i>";
+          label = valor + "<i class='fa fa-fw fa-cloud' style='color:green'></i>";
         } else {
           label = valor;
         }
@@ -718,12 +831,12 @@
         //console.log("valueFormatter");class="fa fa-exchange" fa-level-down fa-level-up
         var label = "";
         if ( row.valor > row.precedente ) {
-          label = valor + row.unidad + "<i class='fa fa-fw fa-chevron-up'></i>";
+          label = valor + row.unidad + "<i class='fa fa-fw fa-chevron-up' style='color:blue'></i>";
         } else {
-          label = valor + row.unidad + "<i class='fa fa-fw fa-chevron-down'></i>";
+          label = valor + row.unidad + "<i class='fa fa-fw fa-chevron-down' style='color:red'></i>";
         }
         if ( row.valor == row.precedente ) {
-            label = valor + row.unidad + "<i class='fa fa-fw fa-exchange'></i>";
+            label = valor + row.unidad + "<i class='fa fa-fw fa-chevron-right' style='color:orange'></i>";
         }
         return label;
       }
@@ -758,10 +871,14 @@
           //console.log("Retour setBouton " + JSON.stringify(data));
           var id_gpio = "#" + id + "_etat";
           //console.log(id_gpio);
+            $(id_gpio).removeClass();
           if ( data.success === "1" ) {
+            updateGPIO();
             if ( data.etat === "1" ) {
+              $(id_gpio).addClass("badge badge-success badge-pill");
               $(id_gpio).html("ON");
             } else {
+              $(id_gpio).addClass("badge badge-danger badge-pill");
               $(id_gpio).html("OFF");
             }
           } else {
@@ -772,55 +889,43 @@
         });
       }
 
-      // Changement du thème - Change current theme
-      // Adapté de - Adapted from : https://wdtz.org/bootswatch-theme-selector.html
-      var supports_storage = supports_html5_storage();
-      if (supports_storage) {
-        var theme = localStorage.theme;
-        console.log("Recharge le theme " + theme);
-        if (theme) {
-          set_theme(get_themeUrl(theme));
-        }
-      }
 
-      // Un nouveau thème est sélectionné - New theme selected
-      jQuery(function($){
-        $('body').on('click', '.change-style-menu-item', function() {
-          var theme_name = $(this).attr('rel');
-          console.log("Changement de theme " + theme_name);
-          var theme_url = get_themeUrl(theme_name);
-          console.log("URL theme : " + theme_url);
-          set_theme(theme_url);
-        });
-      });
-      // Recupere l'adresse du theme - Get theme URL
-      function get_themeUrl(theme_name){
-        $('#labelTheme').html("Th&egrave;me : " + theme_name);
-        var url_theme = "";
-        if ( theme_name === "bootstrap" ) {
-          url_theme = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
-        } else {
-          url_theme = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/" + theme_name + "/bootstrap.min.css";
-        }
-        if (supports_storage) {
-          // Enregistre le theme sélectionné en local - save into the local database the selected theme
-          localStorage.theme = theme_name;
-        }
-        return url_theme;
-      }
-      // Applique le thème - Apply theme
-      function set_theme(theme_url) {
-        $('link[title="main"]').attr('href', theme_url);
-      }
-      // Stockage local disponible ? - local storage available ?
-      function supports_html5_storage(){
-        try {
-          return 'localStorage' in window && window['localStorage'] !== null;
-        } catch (e) {
-          return false;
-        }
-      }
+            $.getJSON("https://bootswatch.com/api/4.json", function (data) {
+              var themes = data.themes;
+              console.log(themes);
+              themes.splice(0, 0, {name: 'bootstrap'});
+              var select = $("select");
+              select.show();
+              $(".alert").toggleClass("alert-info alert-success");
+              $(".alert small").text("Success!");
 
+              themes.forEach(function(value, index){
+                select.append($("<option />")
+                      .val(index)
+                      .text(value.name));
+              });
 
+             select.change(function(){
+                var theme = themes[$(this).val()];
+                if (theme.name== "bootstrap"){
+                  var theme_url="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                  $('link[title="main"]').attr("href", theme_url);
+                }else{
+                $('link[title="main"]').attr("href", theme.css);
+              }
+              }).change();
 
-  </script>
+            }, "json").fail(function(){
+                $(".alert").toggleClass("alert-info alert-danger");
+                $(".alert small").text("Failure!");
+            });
+
+        </script>
+        <h1><span id="info"></span></h1>
+          <div class="alert alert-info">
+            <small>Alert!</small>
+            <p></p>
+          </div>
+          <select></select>
+        </body>
+        </html>
